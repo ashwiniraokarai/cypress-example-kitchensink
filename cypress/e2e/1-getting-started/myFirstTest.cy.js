@@ -12,7 +12,7 @@ context("my first test", () => {
 
    it("renders a paragraph below the h1", () => {
       //the paragraph can be located via its immediate parent which is associated with a .container class
-      //the parent's css locator .container class matches several elements on the page, so we zero in on the second one with .eq(1)
+      //the parent's css locator .container class matches several elements on the page, so we zero in on the second index using .eq(1)
       cy.get('.container').eq(1)
       .find('p').should('exist')
    })
@@ -24,5 +24,10 @@ context("my first test", () => {
          cy.get('p').should('exist')
          cy.get('pre').should('exist')
       })
+   })
+
+   //utilizing locators provided by the cypress testing library plugin
+   it("locates cypress.io link via the cypress testing library style locator", () => {
+      cy.findByText('cypress.io').should('exist')
    })
 })
