@@ -1,7 +1,9 @@
 
+const navBarText = Cypress.env("navBarText")
 context("my first test", () => {
    beforeEach(() => {
-        cy.visit("https://example.cypress.io/commands/actions")
+        //cy.visit("https://example.cypress.io/commands/actions")
+        cy.visit('/commands/actions')
    })
 
    it("has h1 attribute with correct text", () => {
@@ -28,6 +30,6 @@ context("my first test", () => {
 
    //utilizing locators provided by the cypress testing library plugin
    it("locates cypress.io link via the cypress testing library style locator", () => {
-      cy.findByText('cypress.io').should('exist')
+      cy.findByText(navBarText).should('exist')
    })
 })
