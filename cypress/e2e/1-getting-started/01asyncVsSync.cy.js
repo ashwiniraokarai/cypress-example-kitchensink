@@ -27,7 +27,6 @@ context("the sync or more deterministic version - handling promise", () => {
     })
 })
 
-
 context("a more sophisticated example with non-cypress fetch api call", () => {
     beforeEach("Visit the page", () => {
         cy.visit("/commands/actions")
