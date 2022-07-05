@@ -15,6 +15,7 @@ context("my first test", () => {
    it("renders a paragraph below the h1", () => {
       //the paragraph can be located via its immediate parent which is associated with a .container class
       //the parent's css locator .container class matches several elements on the page, so we zero in on the second index using .eq(1)
+      //within the second .container element, we find the paragraph element p
       cy.get('.container').eq(1)
       .find('p').should('exist')
    })
