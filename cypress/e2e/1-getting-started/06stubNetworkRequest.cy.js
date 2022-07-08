@@ -37,15 +37,15 @@ context("stub or mock a network request", () => {
       //Doc says: "cy.wait() yields an object containing the HTTP request and response properties of the request"
       //whereas "cy.request() yields the response as an object literal containing properties such as:status body headers duration"
 
-      cy.wait('@getComment')
-        .then((response) => {
-          expect(response.statusCode).to.eq(200)
-          cy.log(response)
-        })
+      // cy.wait('@getComment')
+      //   .then((response) => {
+      //     expect(response.statusCode).to.eq(200)
+      //     cy.log(response)
+      //   })
 
-    //   cy.wait('@getComment')
-    //     .its('response.statusCode')
-    //     .should('be.oneOf', [200, 304])
+      cy.wait('@getComment')
+        .its('response.statusCode')
+        .should('be.oneOf', [200, 304])
     })
 })
  
