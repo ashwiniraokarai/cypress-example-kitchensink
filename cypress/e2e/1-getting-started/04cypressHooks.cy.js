@@ -8,7 +8,7 @@ context("how hooks work in cypress", () => {
         //   .should('have.length', 10)
 
         //I prefer this approach to have control over writing readable assertions :
-        .should((response)=> {
+        .should((response) => {
             cy.log(JSON.stringify(response.body))
             expect(response.status).to.eq(200)
             cy.log(JSON.stringify(response.body[0]))
