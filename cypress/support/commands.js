@@ -26,3 +26,22 @@
 
 //Added by Ash as per https://github.com/testing-library/cypress-testing-library
 import '@testing-library/cypress/add-commands'
+
+//ADD custom cy command (a.k.a reusable block of code to store frequently needed lines of code)
+//set token (key-value pairs) in browser local storage 
+Cypress.Commands.add('setLocalStorage', (key, value) => {
+    cy.window().then((window) => {
+        window.localStorage.setItem(key, value)
+    })
+})
+
+//ADD another custom cy command to:
+//get token (value based on key) from browser local storage
+Cypress.Commands.add('getLocalStorage', (key) => {
+    cy.window().then((window) => {
+      return window.localStorage.getItem(key)
+    })
+})
+
+//OVERWRITE a default cy command
+//
