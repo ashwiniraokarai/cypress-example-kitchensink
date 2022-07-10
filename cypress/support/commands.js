@@ -43,5 +43,20 @@ Cypress.Commands.add('getLocalStorage', (key) => {
     })
 })
 
-//OVERWRITE a default cy command
-//
+//Overwrite the default .type() command: in particular, change what data the Cypress log shows! 
+Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
+  if(options && options.sensitive){
+    options.log = false
+    Cypress.log({
+      //customize the log via a bunch of key value pairs exposed to you
+      //you can customize of the name of the command to show in the log. By default this is 'type'.
+      name: 'type',
+      //mask the password. By default this shows whatever text is entered, as is
+      message: "*".repeat(text.length)
+    })
+  }
+
+  //IMPORTANT: You gotta return the original function when overriding. Otherwise, the default "message" won't show in the log!
+  return originalFn(element, text, options)
+})
+
