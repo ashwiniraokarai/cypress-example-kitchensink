@@ -45,6 +45,13 @@ $(() => {
     $(e.currentTarget).addClass('hidden')
   })
 
+  //Ash: Add code to create a hover state a.k.a mouseover state in the app
+  //Use-case: On hovering over the Commands nav bar item, reveal the drop down list
+  //NOTE: because of how codebase is designed, this will work on the nav bar item only on the /commands/actions page!
+  $('.dropdown-toggle').on('mouseover', (e) => {
+    $('li.active').addClass('open')
+  })
+
   // listen to contextmenu to demonstrate logic on right click command
   $('.rightclick-action-div').on('contextmenu', (e) => {
     $('.rightclick-action-input-hidden').removeClass('hidden').focus()
