@@ -15,9 +15,8 @@ jobs: # A series of jobs. Pay attention to indentation - super important in yml 
         uses: cypress-io/github-action@v4
         with:
           #build: npm run build #in turn runs  "npm run lint" just as designated in package.json file 
-          start: npm start #in turn runs "node ./scripts/start.js" just as designated in package.json file
-          #record: false
-        
+          start: npm start #in turn runs "node ./scripts/start.js" just as designated in package.json file record: false
+          spec: cypress/e2e/10mouseEvents.cy.js #to run a specific spec. Comment or remove line to run all tests
 
 
 
