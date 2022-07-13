@@ -18,8 +18,10 @@ jobs: # A series of jobs. Pay attention to indentation - super important in yml 
           start: npm start #in turn runs "node ./scripts/start.js" just as designated in package.json file record: false
           config: baseUrl=http://localhost:8080 #explicit baseUrl for tests when running on CI
           # spec: cypress/e2e/2-advanced-examples/cypress_api.cy.js #to run a specific spec. Comment or remove line to run all tests
-          spec: cypress/e2e/1-getting-started/**/* #to run tests in a specific folder. Comment or remove line to run all by default
-
+          # spec: cypress/e2e/1-getting-started/**/* #to run tests in a specific folder. Comment or remove line to run all by default
+          spec: |                                   
+            cypress/e2e/1-getting-started/**/*  
+            cypress/e2e/2-advanced-examples/**/*
           
 
 
