@@ -33,19 +33,24 @@ context("stub or mock a network request", () => {
     
       //wait for an aliased resource to resolve before moving on to the next command => less flake
       //https://docs.cypress.io/api/commands/wait
-      //cy.wait does not yield a response object, thus the .should(response) code that would have worked great with cy.request fails here 
-      //Doc says: "cy.wait() yields an object containing the HTTP request and response properties of the request"
-      //whereas "cy.request() yields the response as an object literal containing properties such as:status body headers duration"
-
-      // cy.wait('@getComment')
-      //   .then((response) => {
-      //     expect(response.statusCode).to.eq(200)
-      //     cy.log(response)
-      //   })
-
+      //Unlike cy.request that yields the response as an object containing properties such as:status body headers duration"
+      //cy.wait does NOT yield a response object, thus the .should(response) or .then (response) pattern that would have worked great with cy.request fails here 
+      //Doc says: "cy.wait() yields an object containing the HTTP request and response PROPERTIES of the request"
+      //Which I believe means is "destruction assignment":
+      //"If your object being passed in mirrors the variable being referenced, you can retrieve that specific field during assignment."
+      // https://stackoverflow.com/questions/4146984/curly-braces-inside-javascript-arguments-for-functions
+      //So, I'd need to wrap the object "property" in curly braces like this: { response }
+      
       cy.wait('@getComment')
-        .its('response.statusCode')
-        .should('be.oneOf', [200, 304])
+        .then(({ response }) => {
+          expect(response.statusCode).to.eq(200)
+          cy.log(response)
+        })
+
+      // Alternate option is to use .its pattern which is not my favorite. It's a little too much abstration imho.
+      // cy.wait('@getComment')
+      //   .its('response.statusCode')
+      //   .should('be.oneOf', [200, 304])
     })
 })
  
